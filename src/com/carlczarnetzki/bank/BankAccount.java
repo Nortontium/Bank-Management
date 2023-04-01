@@ -79,7 +79,7 @@ public class BankAccount {
         Scanner sc = new Scanner(System.in);
         System.out.println("\n");
         System.out.println("Welcome " + this.getCustomerName());
-        System.out.println("Your ID: " + this.getId());
+        System.out.printf("Your ID: %08d\n", this.getId());
         System.out.println("\n");
         System.out.println("1 --- Check balance");
         System.out.println("2 --- Deposit amount");

@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class BankApplication {
     private int lastId;
     public BankApplication() {
-        lastId = -1;
+        lastId = 0;
     }
 
     public int getLastId() {
@@ -63,10 +63,10 @@ public class BankApplication {
                     System.out.println("......................");
                     String passwordInput = scMain.nextLine();
                     System.out.println("\n");
-                    if(id <= this.lastId && id >= 0) {
-                        String passwordUser = bankAccounts.get(id).getPassword();
+                    if(id <= this.lastId && id > 0) {
+                        String passwordUser = bankAccounts.get(id - 1).getPassword();
                         if (passwordUser.equals(passwordInput)) {
-                            bankAccounts.get(id).menu();
+                            bankAccounts.get(id - 1).menu();
                         }
                         else{
                             System.out.println("********************************************");
@@ -97,17 +97,17 @@ public class BankApplication {
                     System.out.println("......................");
                     String passwordInputChange = scMain.nextLine();
                     System.out.println("\n");
-                    if(idChange <= this.lastId && idChange >= 0) {
-                        String passwordUser = bankAccounts.get(idChange).getPassword();
+                    if(idChange <= this.lastId && idChange > 0) {
+                        String passwordUser = bankAccounts.get(idChange - 1).getPassword();
                         if (passwordUser.equals(passwordInputChange)) {
-                            System.out.println("Welcome " + bankAccounts.get(idChange).getCustomerName());
+                            System.out.println("Welcome " + bankAccounts.get(idChange - 1).getCustomerName());
                             System.out.println("\n");
                             System.out.println("......................");
                             System.out.println("Enter new password");
                             System.out.println("......................");
                             String passwordNew = scMain.nextLine();
                             System.out.println("\n");
-                            bankAccounts.get(idChange).setPassword(passwordNew);
+                            bankAccounts.get(idChange - 1).setPassword(passwordNew);
                             System.out.println("********************************************");
                             System.out.println("Password changed");
                             System.out.println("\n");

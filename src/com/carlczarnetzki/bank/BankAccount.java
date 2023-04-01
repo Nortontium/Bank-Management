@@ -9,6 +9,8 @@ public class BankAccount {
     private double balance;
     private double prevTrans;
 
+
+
     public BankAccount(int id, String customerName, String password) {
         this.id = id;
         this.customerName = customerName;
@@ -57,15 +59,15 @@ public class BankAccount {
     public void withdraw(double amount){
         if(amount > 0 && this.getBalance() >= amount){
             this.setBalance(this.getBalance() - amount);
-            this.setPrevTrans(-amount);
+            this.setPrevTrans(amount);
         }
     }
 
     public void printPrevTrans(){
         if(this.getPrevTrans() > 0){
-            System.out.println("Deposited: " + this.getPrevTrans());
+            System.out.println("Deposited: " + this.getPrevTrans() + "€");
         } else if (this.getPrevTrans() < 0){
-            System.out.println("Withdrawn: " + this.getPrevTrans());
+            System.out.println("Withdrawn: " + this.getPrevTrans() + "€");
         }
         else{
             System.out.println("No transaction occurred");
@@ -75,6 +77,7 @@ public class BankAccount {
     public void menu(){
         char option;
         Scanner sc = new Scanner(System.in);
+        System.out.println("\n");
         System.out.println("Welcome " + this.getCustomerName());
         System.out.println("Your ID: " + this.getId());
         System.out.println("\n");
@@ -82,24 +85,24 @@ public class BankAccount {
         System.out.println("2 --- Deposit amount");
         System.out.println("3 --- Withdraw amount");
         System.out.println("4 --- Previous transactions");
-        System.out.println("5 --- Exit");
+        System.out.println("5 --- Logout");
 
         do {
             System.out.println("********************************************");
             System.out.println("Choose an option");
-            option=sc.next().charAt(0);
+            option = sc.next().charAt(0);
             System.out.println("\n");
 
             switch (option){
                 case '1':
                     System.out.println("......................");
-                    System.out.println("Balance: " + this.getBalance());
+                    System.out.println("Balance: " + this.getBalance() + "€");
                     System.out.println("......................");
                     System.out.println("\n");
                     break;
                 case '2':
                     System.out.println("......................");
-                    System.out.println("Enter amount to deposit: ");
+                    System.out.println("Enter amount to deposit in €");
                     System.out.println("......................");
                     double amountDeposit = sc.nextDouble();
                     this.deposit(amountDeposit);
@@ -107,7 +110,7 @@ public class BankAccount {
                     break;
                 case '3':
                     System.out.println("......................");
-                    System.out.println("Enter amount to withdraw: ");
+                    System.out.println("Enter amount to withdraw in €");
                     System.out.println("......................");
                     double amountWithdraw = sc.nextDouble();
                     this.withdraw(amountWithdraw);
@@ -121,12 +124,17 @@ public class BankAccount {
                     System.out.println("\n");
                     break;
                 case '5':
-                    System.out.println("Thank you for using our banking services");
                     System.out.println("********************************************");
-                default:
-                    System.out.println("Choose a correct option to proceed");
+                    System.out.println("Logging out");
                     System.out.println("\n");
+                    break;
+                default:
+                    System.out.println("......................");
+                    System.out.println("Choose a correct option to proceed");
+                    System.out.println("......................");
+                    System.out.println("\n");
+                    break;
             }
-        } while (option != 5);
+        } while (option != '5');
     }
 }
